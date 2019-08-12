@@ -13,7 +13,7 @@
 
         <!-- Calendar JS -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -70,11 +70,13 @@
                     </table>
                 </div>
                 <div class="col">
-                    <h4>Basic stats on temperature</h4>
-                    <br>
-                    <p style="margin-left: 40px">Start Date: <input class="start" type="text" id="from" onchange="get_startdate_to_link()"></p>
-                    <p style="margin-left: 40px">End Date: <input class="end" type="text" id="to" onchange="get_enddate_to_link()"></p>
-                    <a style="margin-left: 40px" href="http://127.0.0.1:5000/api/v1.0/[start_date]" id="query_date">Click after setting date(s)</a>
+                    <form id="myForm">
+                        <h4>Basic stats on temperature</h4>
+                        <div class="msg"></div>
+                        <p style="margin-left: 40px">Start Date: <input class="start" type="text" id="from"></p>
+                        <p style="margin-left: 40px">End Date: <input class="end" type="text" id="to"></p>
+                        <input style="margin-left: 70px" class="btn" type="button" Value="Submit">
+                    </form>
                     <hr>
                     <p style="margin-left: 40px"><strong>Note:</strong> You can put either <code>start date</code> only or both <code>start</code> and <code>end date</code>.</p>
                 </div>
@@ -82,24 +84,28 @@
         </div>
 
         <script>
+                const currentStartDate = document.querySelector('.start');
+                const currentEndDate = document.querySelector('.end');
+                const myButton = document.querySelector('.btn');
+                const msg = document.querySelector('.msg');
 
-                function get_startdate_to_link() {
-                    var currentStartDate = document.getElementsByClassName('start')[0].value                    
-                   
-                    var start_date = document.getElementById("query_date");
-                        start_date.setAttribute("href", `http://127.0.0.1:5000/api/v1.0/${currentStartDate}`);
-                        start_date.innerHTML = `http://127.0.0.1:5000/api/v1.0/${currentStartDate}`;
-                }
+                myButton.addEventListener('click', onClick);
 
-                function get_enddate_to_link() {
-                    var currentStartDate = document.getElementsByClassName('start')[0].value
-                    var currentEndDate = document.getElementsByClassName('end')[0].value
-                    
-                    var start_end_date = document.getElementById("query_date");
-                        start_end_date.setAttribute("href", `http://127.0.0.1:5000/api/v1.0/${currentStartDate}/${currentEndDate}`);
-                        start_end_date.innerHTML = `http://127.0.0.1:5000/api/v1.0/${currentStartDate}/${currentEndDate}`;
-                }
-            
+                function onClick(e) {
+
+                    if (currentStartDate.value !== '' && currentEndDate.value === '') {
+                        
+                        window.location = `http://127.0.0.1:5000/api/v1.0/${currentStartDate.value}`;
+                        
+                    } else if (currentStartDate.value !== '' && currentEndDate.value !== '') {
+                        
+                        window.location = `http://127.0.0.1:5000/api/v1.0/${currentStartDate.value}/${currentEndDate.value}`;
+
+                    } else {
+                        msg.innerHTML = 'Please select start date first'
+                        setTimeout(() => msg.remove(), 2000);
+                    }
+                };            
         </script>
     </body>
 </html>
