@@ -13,6 +13,7 @@
 
         <!-- Calendar JS -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        
         <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -73,8 +74,8 @@
                     <form id="myForm">
                         <h4>Basic stats on temperature</h4>
                         <div class="msg"></div>
-                        <p style="margin-left: 40px">Start Date: <input class="start" type="text" id="from"></p>
-                        <p style="margin-left: 40px">End Date: <input class="end" type="text" id="to"></p>
+                        <p style="margin-left: 40px">Start Date: <input class="start" type="text" id="from" autocomplete="off"></p>
+                        <p style="margin-left: 40px">End Date: <input class="end" type="text" id="to" autocomplete="off"></p>
                         <input style="margin-left: 70px" class="btn" type="button" Value="Submit">
                     </form>
                     <hr>
@@ -102,8 +103,8 @@
                         window.location = `http://127.0.0.1:5000/api/v1.0/${currentStartDate.value}/${currentEndDate.value}`;
 
                     } else {
-                        msg.innerHTML = 'Please select start date first'
-                        setTimeout(() => msg.remove(), 2000);
+                        msg.innerHTML = "Please select the start date first."
+                        setTimeout(() => msg.innerHTML = "", 2000);
                     }
                 };            
         </script>
