@@ -1,5 +1,4 @@
-# Advanced_data_storage_and_retrieval
+# Analysis on a Hawaii climate dataset with SQL
 
-* A fun practice to do a climate analysis querying weather database with `sqlalchemy` ORM, `pandas`, and `matplotlib`.
-  * For `SQL` practice purpose, just implemented raw sql query + `pandas.read_sql_query()` combination for almost every analysis.
-* Also created an web app using `Flask-sqlalchemy` to get and display the results of the developed queries in the web-based environment.
+* EDA on Hawaii climate dataset using SQL query, Pandas, and matplotlib
+* Web page creation using `Flask-SQLAlchemy` to get and display the results of the developed queries on the web-based environment
